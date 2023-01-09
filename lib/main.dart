@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'flutter_bloc.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -26,22 +27,36 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final counterBloc= CounterBloc();
+  final counterBloc = CounterBloc();
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Counter')),
+      appBar: AppBar(title: const Text('Counter')),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Counter'),
+          const Text('Counter'),
           StreamBuilder(
               initialData: 0,
-              stream:counterBloc.eventStream,
-              builder: (context, snapshot) => Text(snapshot.data.toString()))
+              stream: counterBloc.countStream,
+              builder: (context, snapshot) => Text('${snapshot.data}')),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              iconMe(Icons.add,
+                  () => counterBloc.eventSink.add(CounterAction.add)),
+              iconMe(Icons.remove,
+                  () => counterBloc.eventSink.add(CounterAction.remove)),
+              iconMe(Icons.restore,
+                  () => counterBloc.eventSink.add(CounterAction.reset)),
+            ],
+          )
         ],
       ),
     );
   }
+
+  IconButton iconMe(IconData iconData, VoidCallback press) =>
+      IconButton(onPressed: press, icon: Icon(iconData));
 }
