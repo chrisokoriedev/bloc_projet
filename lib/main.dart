@@ -27,7 +27,9 @@ class Home extends StatelessWidget {
       appBar: AppBar(title: Text('Counter')),
       body: Column(
         children: [
-          
+          StreamBuilder(
+              initialData: 0,
+              builder: (context, snapshot) => Text(snapshot.data.toString()))
         ],
       ),
     );
