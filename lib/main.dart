@@ -28,6 +28,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final counterBloc = CounterBloc();
+  @override
+  void dispose() {
+    super.dispose();
+    counterBloc.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

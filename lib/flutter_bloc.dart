@@ -24,4 +24,8 @@ class CounterBloc {
       countSink.add(counter);
     });
   }
+  void dispose() {
+    _countStreamController.close();
+    _eventStreamController.close();
+  }
 }
