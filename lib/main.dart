@@ -1,3 +1,4 @@
+import 'package:bloc_projet/news_pge.dart';
 import 'package:flutter/material.dart';
 import 'flutter_bloc.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Home(),
+      home: const NewsPage(),
     );
   }
 }
