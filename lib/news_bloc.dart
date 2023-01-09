@@ -16,7 +16,16 @@ class NewsBloc {
   NewsBloc() {
     newsActionStream.listen((event) async {
       if (event == NewsAction.fetch) {
-        var newsData = await getNews();
+        try {
+          var newsData = await getNews();
+          if (newsData.articles.isNotEmpty) {
+            newsSink.add(newsData.articles);
+          } else {
+            newsSink.addError('Something went wrong');
+          }
+        } on Exception catch (e) {
+          newsSink.addError('Something went wrong');
+        }
       }
     });
   }

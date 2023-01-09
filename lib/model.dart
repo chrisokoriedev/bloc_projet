@@ -7,18 +7,18 @@ class Article {
 
     final String? status;
     final int? totalResults;
-    final List<ArticleElement?>? articles;
+    final List<ArticleElement> articles;
 
     factory Article.fromJson(Map<String, dynamic> json) => Article(
         status: json["status"],
         totalResults: json["totalResults"],
-        articles: json["articles"] == null ? [] : List<ArticleElement?>.from(json["articles"]!.map((x) => ArticleElement.fromJson(x))),
+        articles:  List<ArticleElement>.from(json["articles"]!.map((x) => ArticleElement.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
         "status": status,
         "totalResults": totalResults,
-        "articles": articles == null ? [] : List<dynamic>.from(articles!.map((x) => x!.toJson())),
+        "articles": List<dynamic>.from(articles.map((x) => x.toJson())),
     };
 }
 
