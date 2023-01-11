@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({super.key});
-
+c
   @override
   State<NewsPage> createState() => _NewsPageState();
 }
